@@ -1,5 +1,6 @@
 //import
 import express from 'express';
+import carRoutes from './routes/carRuotes.mjs';
 
 //Setup
 const app = express ();
@@ -8,12 +9,16 @@ const PORT = 3000 || 3001
 // Middelware
 
 //Routes
+app.use('/cars',carRoutes);
+
+
 //test run 
 app.get('/', (req, res)=>{
     res.send ('run server RUN!')
     
 })
-//this 
+
+
 //Listener 
 app.listen(PORT, ()=>{
 
