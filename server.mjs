@@ -8,6 +8,11 @@ const PORT = 3000 || 3001
 // Middelware
 
 //Routes
+//test run 
+app.get('/', (req, res)=>{
+    res.send ('run server RUN!')
+    
+})
 
 //Listener 
 app.listen(PORT, ()=>{
