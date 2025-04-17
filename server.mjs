@@ -12,11 +12,11 @@ const PORT = 3000 || 3001
 app.use('/cars',carRoutes);
 
 
-//test run 
-app.get('/', (req, res)=>{
-    res.send ('run server RUN!')
+//first test run 
+// app.get('/', (req, res)=>{
+//     res.send ('run server RUN!')
     
-})
+// })
 
 
 //Listener 
