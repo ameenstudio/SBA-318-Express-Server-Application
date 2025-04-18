@@ -7,6 +7,11 @@ const app = express ();
 const PORT = 3000 || 3001
 
 // Middelware
+//Body parsing middleware
+app.use(express.json());
+
+
+
 
 //Routes
 app.use('/cars',carRoutes);

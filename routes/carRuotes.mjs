@@ -7,13 +7,18 @@ const router = express.Router();
 //     res.send('This carRoute works')
 // });
 
+//DB
+const cars = [];
+
+
 
 //creating a chain wiht .route
 router
     .route('/').post((req, res) => {
+        console.log(req.body)
         res.send('Added car')
     }).get((req, res) => {
-        res.send('Getting car')
+        res.json(cars)
     })
 
 
