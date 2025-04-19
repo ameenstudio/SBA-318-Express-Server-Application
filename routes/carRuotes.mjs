@@ -26,9 +26,9 @@ router
             ...req.body,
         }
         cars.push(newEntry);
-        res.json([newEntry, links]);
+        res.json([newEntry, {links: links}]);
     }).get((req, res) => {
-        res.json([cars, links])
+        res.json([cars, {links: links}])
     })
 
 
