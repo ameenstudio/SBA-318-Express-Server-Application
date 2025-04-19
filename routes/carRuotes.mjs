@@ -9,20 +9,26 @@ const router = express.Router();
 
 //DB
 const cars = [];
+const links = [
+    { href: '/', type: 'GET' },
+    { href: '/', type: 'POST' },
+];
 
 
 
 //creating a chain wiht .route
 router
     .route('/').post((req, res) => {
-        let  newEntry = {
+        
+
+        let newEntry = {
             id: cars.length,
             ...req.body,
         }
         cars.push(newEntry);
-        res.json(newEntry);
+        res.json([newEntry, links]);
     }).get((req, res) => {
-        res.json(cars)
+        res.json([cars, links])
     })
 
 
