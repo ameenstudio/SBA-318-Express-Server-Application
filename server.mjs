@@ -7,7 +7,7 @@ const app = express ();
 const PORT = 3000 || 3001
 
 // Middelware
-//Body parsing middleware
+//Body parsing middleware .. read and pares req body
 app.use(express.json());
 
 

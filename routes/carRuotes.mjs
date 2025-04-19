@@ -15,8 +15,12 @@ const cars = [];
 //creating a chain wiht .route
 router
     .route('/').post((req, res) => {
-        console.log(req.body)
-        res.send('Added car')
+        let  newEntry = {
+            id: cars.length,
+            ...req.body,
+        }
+        cars.push(newEntry);
+        res.json(newEntry);
     }).get((req, res) => {
         res.json(cars)
     })
