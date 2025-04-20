@@ -74,12 +74,19 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes)
 
-//custom err handling middleware
+//custom middleware
 
+// err handling 
 app.use((req,res)=>{
     res.status(400)
     res.json({error:"Resource not found"})
 })
+
+const logReq= function ( req, res, next){
+    console.log('Requet Recived:')
+    next()
+}
+app.use(logReq);
 
 //first test run 
 // app.get('/', (req, res)=>{
@@ -88,9 +95,9 @@ app.use((req,res)=>{
 // })
 
 //error handling middelware
-app.use((err,req,res,next)=>{
-    res.status(400).send(err.message)
-})
+// app.use((err,req,res,next)=>{
+//     res.status(400).send(err.message)
+// })
 
 //Listener 
 app.listen(PORT, ()=>{

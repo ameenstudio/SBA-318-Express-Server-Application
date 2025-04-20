@@ -9,7 +9,14 @@ import comments from '../data/comments.mjs';
 //path : /api/user
 
 router.route('/').get((req, res) => {
-    res.json(users)
+    const links = users.map((user) => ({
+        href: `/api/user/${user.id}`, //generate the user ID
+        rel: "user",
+        type: "GET",
+    }));
+
+    res.json({ users, links });
+
 }).post((req, res) => {
     //data validation for post 
     if (req.body.name && req.body.email) {
@@ -26,6 +33,11 @@ router.route('/').get((req, res) => {
         };
 
         users.push(user);
+
+        const links = [
+            { href: `/api/user/${user.id}`, rel: "self", type: "GET" }
+        ];
+        
         res.json(users[users.length - 1]);
 
 
@@ -35,12 +47,21 @@ router.route('/').get((req, res) => {
 
 });
 
-//description: this route gtes all users
+//description: this route gtes one user
 //path : /api/user/:id
-router.route('/:id').get((req, res, next) => {
+router.route('/:id').get((req, res) => {
     const user = users.find((u) => u.id == req.params.id);
-    if (user) res.json(user);
-    else next()
+
+    if (user) {
+        const links = [
+            { href: `/api/user/${user.id}`, rel: "self", type: "GET" }
+        ];
+
+        res.json({ user, links });
+    } else {
+        res.status(404).json({ error: 'User not found' });
+    }
+
 
 
     // else res.json({error:'user not found'});
@@ -48,33 +69,26 @@ router.route('/:id').get((req, res, next) => {
     //console.log(req.params.id) testing 
     // res.send('test')//testing
 })
-    .patch((req, res, next) => {
-
-
-
-        const user = users.find((u, i) => {
-            if (u.id == req.params.id) {
-
-                for (const key in req.body) {
-
-                    users[i][key] = req.body[key];
-
-                }
-
-                return true;
-
+.patch((req, res, next) => {
+    const user = users.find((u, i) => {
+        if (u.id == req.params.id) {
+            for (const key in req.body) {
+                users[i][key] = req.body[key];
             }
+            return true;
+        }
+    });
 
-        });
+    if (user) {
+        const links = [
+            { href: `/api/user/${req.params.id}`, rel: "self", type: "GET" }
+        ];
 
-
-        if (user) res.json(user);
-
-        else next();
-
+        res.json({ user, links });
+    } else {
+        next()
     }
-
-    )
+})
     .delete((req, res, next) => {
         // res.send('Delete') testing if delete is working
         const user = users.find((u, i) => {
@@ -84,9 +98,15 @@ router.route('/:id').get((req, res, next) => {
             }
           });
 
-          if (user) res.json(user);
-          else next();
-        
+          if (user) {
+            const links = [
+                { href: `/api/user`, rel: "all-users", type: "GET" } // to fetch all users
+            ];
+    
+            res.json({ message: `User with ID ${req.params.id} deleted`, user, links }); // helps me to see if the user was deleted instead of the old msg 
+        } else {
+            next()
+        }
     });
 
 
