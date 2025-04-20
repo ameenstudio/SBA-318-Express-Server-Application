@@ -83,6 +83,10 @@ router.route('/:id').get((req, res, next) => {
               return true;
             }
           });
+
+          if (user) res.json(user);
+          else next();
+        
     });
 
 

@@ -8,6 +8,7 @@ import userRoutes from './routes/userRoutes.mjs'
 import postRoutes from './routes/postRoutes.mjs'
 import commentRoutes from './routes/commentRoutes.mjs'
 import fs from 'fs';
+import { error } from 'console';
 // console.log(users) making sure pagegs are connected 
 
 // const users = require("./data/users.mjs");
@@ -33,8 +34,30 @@ app.engine('template', (filepath, option, callback)=>{
     
     })
     
+    
     app.set('view','./views');
     app.set('view engine', 'template');
+    ////
+    // app.engine('template', (filepath, options, callback) => {
+    //     fs.readFile(filepath, 'utf8', (err, content) => {
+    //         if (err) return callback(err);
+    
+            
+    //         let render = content.toString();
+    //         for (const key in options) {
+    //             const regex = new RegExp(`{{${key}}}`, 'g');
+    //             render = render.replace(regex, options[key]);
+    //         }
+    
+    //         return callback(null, render);
+    //     });
+    // });
+    
+    app.set('views', './views'); // Corrected from 'view' to 'views'
+    app.set('view engine', 'template');
+
+
+    
 
 // Middelware
 app.use(express.json());
@@ -64,6 +87,10 @@ app.use((req,res)=>{
     
 // })
 
+//error handling middelware
+app.use((err,req,res,next)=>{
+    res.status(400).send(err.message)
+})
 
 //Listener 
 app.listen(PORT, ()=>{
