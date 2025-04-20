@@ -49,10 +49,34 @@ router.route('/:id').get((req,res, next)=>{
     // res.send('test')//testing
 })
 .patch((req, res, next) => {
-    res.send('Patch user');
-})
+
+   
+
+    const user = users.find((u, i) => { 
+      if (u.id == req.params.id) { 
+
+        for (const key in req.body) { 
+
+          users[i][key] = req.body[key]; 
+
+        }
+
+        return true;
+
+      }
+
+    });
+
+
+    if (user) res.json(user);
+
+    else next();
+
+  }
+      
+)
 .delete((req, res, next) => {
-    res.send('Delete User');
+    // res.send('Delete') testing if delete is working
 });
 
 
