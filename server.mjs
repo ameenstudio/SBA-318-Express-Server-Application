@@ -1,10 +1,13 @@
 //import
 import express from 'express';
-import carRoutes from './routes/carRuotes.mjs';
+// import carRoutes from './routes/carRuotes.mjs';
 import users from './data/users.mjs';
 import posts from './data/posts.mjs';
 import comments from './data/comments.mjs';
-console.log(users)
+import userRoutes from './routes/userRoutes.mjs'
+import postRoutes from './routes/postRoutes.mjs'
+import commentRoutes from './routes/commentRoutes.mjs'
+// console.log(users) making sure pagegs are connected 
 
 // const users = require("./data/users.mjs");
 // const post = require("./data/posts.mjs");
@@ -19,13 +22,15 @@ const PORT = 3000 || 3001
 
 // Middelware
 //Body parsing middleware .. read and pares req body
-app.use(express.json());
+// app.use(express.json());
 
 
 
 
 //Routes
-app.use('/cars',carRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/post', postRoutes);
+app.use('/api/comment', commentRoutes)
 
 
 //first test run 
