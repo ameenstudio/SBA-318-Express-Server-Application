@@ -7,6 +7,7 @@ import comments from './data/comments.mjs';
 import userRoutes from './routes/userRoutes.mjs'
 import postRoutes from './routes/postRoutes.mjs'
 import commentRoutes from './routes/commentRoutes.mjs'
+import fs from 'fs';
 // console.log(users) making sure pagegs are connected 
 
 // const users = require("./data/users.mjs");
@@ -18,6 +19,7 @@ import commentRoutes from './routes/commentRoutes.mjs'
 const app = express ();
 const PORT = 3000 || 3001
 
+//view eng
 app.engine('template', (filepath, option, callback)=>{
 
     fs.readFile(filepath, (err, content)=>{
@@ -35,6 +37,10 @@ app.engine('template', (filepath, option, callback)=>{
     app.set('view engine', 'template');
 
 // Middelware
+app.use(express.json());
+
+
+
 //Body parsing middleware .. read and pares req body
 // app.use(express.json());
 
