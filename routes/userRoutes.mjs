@@ -13,14 +13,15 @@ router.get('/', (req, res )=>{
 })
 
 //description: this route gtes all all users
-//path : /api/user
-router.get('/:id', (req,res)=>{
+//path : /api/user/:id
+router.get('/:id', (req,res, next)=>{
     const user = users.find((u)=>u.id ==req.params.id);
     if (user)res.json(user);
-    else res.json({error:'user not found'});
+    else next()
+    // else res.json({error:'user not found'});
 
     //console.log(req.params.id) testing 
-    res.send('test')
+    // res.send('test')//testing
 })
 
 export default router;

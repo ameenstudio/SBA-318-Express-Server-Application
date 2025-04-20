@@ -18,12 +18,25 @@ import commentRoutes from './routes/commentRoutes.mjs'
 const app = express ();
 const PORT = 3000 || 3001
 
+app.engine('template', (filepath, option, callback)=>{
 
+    fs.readFile(filepath, (err, content)=>{
+        if (err) return callback(err)
+    
+    
+        const render= content.toString()
+    
+        return callback(null, render)
+    })
+    
+    })
+    
+    app.set('view','./views');
+    app.set('view engine', 'template');
 
 // Middelware
 //Body parsing middleware .. read and pares req body
 // app.use(express.json());
-
 
 
 
@@ -32,6 +45,12 @@ app.use('/api/user', userRoutes);
 app.use('/api/post', postRoutes);
 app.use('/api/comment', commentRoutes)
 
+//custom err handling middleware
+
+app.use((req,res)=>{
+    res.status(400)
+    res.json({error:"Resource not found"})
+})
 
 //first test run 
 // app.get('/', (req, res)=>{

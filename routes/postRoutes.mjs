@@ -14,11 +14,12 @@ router.get('/', (req, res )=>{
 })
 
 //description: this route will get one post
-//path : /api/post/
-router.get('/:id',(req,res)=>{
+//path : /api/post/:id
+router.get('/:id',(req,res, next)=>{
     const post = posts.find(p=> p.id == req.params.id);
     if(post)res.json(post)
-        else res.json({error:'page not found'})
+        else next()
+        // else res.json({error:'page not found'})
 })
 
 
