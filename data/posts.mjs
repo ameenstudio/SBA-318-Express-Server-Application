@@ -1,5 +1,5 @@
-{
-    "posts": [
+
+const posts= [
       {
         "id": 1,
         "userId": 1,
@@ -34,5 +34,5 @@
         ]
       }
     ]
-  }
   
+  export default posts;

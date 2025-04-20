@@ -1,5 +1,5 @@
-{
-    "users": [
+
+    const users= [
       {
         "id": 1,
         "name": "Alice",
@@ -22,4 +22,5 @@
         "interests": ["photography", "music", "cycling"]
       }
     ]
-  }
+  
+    export default users;

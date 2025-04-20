@@ -1,5 +1,4 @@
-{
-    "comments": [
+const comments=[
       {
         "commentId": 1,
         "postId": 1,
@@ -36,5 +35,6 @@
         "userId": 2,
         "content": "Nice! How many miles did you cover?"
       }
-    ]
-  }
+    ];
+
+    export default comments;
