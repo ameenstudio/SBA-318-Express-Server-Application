@@ -19,6 +19,14 @@
     <div id="app">
 
       <h1>#title#</h1>
+       <label for="list">Check your name on the list:</label>
+
+<select name="List" id="list">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>   
 
       <div>#content#</div>
 
