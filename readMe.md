@@ -1,3 +1,6 @@
+// The app allows users to browse, view, and interact with data related to users, their posts, and the comments tied to those posts.
+
+
 //What could you have done differently during the planning stages of your project to make the execution easier?
 I probably could have spent more time upfront figuring out how everything would fit together. Maybe like drawing out a quick sketch of the structure or writing down the steps more clearly.
 
